@@ -1,3 +1,7 @@
+/**
+ * Following a Tweakers.net tutorial in SpringBoot with H2 database
+ * https://tweakers.net/advertorials/onlinejavaacademy2/
+ */
 package nl.bos;
 
 import org.springframework.boot.SpringApplication;

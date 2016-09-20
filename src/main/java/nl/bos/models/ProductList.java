@@ -2,11 +2,32 @@ package nl.bos.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
 public class ProductList {
+	@Id
+	@GeneratedValue
 	private final long id;
+	
+	@Column(nullable=false)
 	private final String name;
+	
+	@ManyToMany
+	@JsonManagedReference
 	private List<Product> products;
 
+	public ProductList() {
+		id = 0;
+		name = "";
+	}
+	
 	public ProductList(String name) {
 		this.id = -1;
 		this.name = name;

@@ -1,25 +1,51 @@
 package nl.bos.models;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
 public class Product {
+	@Id
+	@GeneratedValue
 	private final long id;
+	
+	@Column(nullable=false)
 	private final String name;
+	
+	@Column(nullable=true)
 	private final String url;
-	private final Person person;
+	
+	@Column(nullable=false)
+	private final BigDecimal price;
+
+	@ManyToMany(mappedBy="products")
+	@JsonBackReference
+	private List<ProductList> lists;
 	
 	public String getUrl() {
 		return url;
 	}
 
-	private final BigDecimal price;
-
+	public Product() {
+		url = "";
+		price = new BigDecimal(0);
+		name = "";
+		id = 0;
+	}
+	
 	public Product(String name, BigDecimal price, String url, Person person) {
 		this.id = -1;
 		this.name = name;
 		this.price = price;
 		this.url = url;
-		this.person = person;
 	}
 
 	public Product(long id, String name, BigDecimal price, String url, Person person) {
@@ -27,7 +53,6 @@ public class Product {
 		this.name = name;
 		this.price = price;
 		this.url = url;
-		this.person = person;
 	}
 
 	public long getId() {
@@ -40,9 +65,5 @@ public class Product {
 
 	public BigDecimal getPrice() {
 		return price;
-	}
-
-	public Person getPerson() {
-		return person;
 	}
 }

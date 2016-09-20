@@ -18,4 +18,14 @@ app.controller("myCtrl", function($scope, $http) {
 	}, function error(response) {
 		console.log(response);
 	});
+	
+	$http({
+		method: "GET",
+		url: "http://localhost:8080/api/personData"
+	}).then(function success(personData) {
+		console.log(personData);
+		$scope.personData = personData.data;
+	}, function error(response) {
+		console.log(response);
+	});
 });
