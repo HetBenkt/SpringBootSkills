@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.bos.models.Person;
@@ -20,8 +21,13 @@ public class ProducListController extends ApiController {
 	ProductListRepository productListRepository;
 
 	@RequestMapping(value = "/showAllProductsLists", method = RequestMethod.GET)
-	public List<ProductList> showAllProductsLists() {
-		return (List<ProductList>) productListRepository.findAll();
+	public List<ProductList> showAllProductsLists(@RequestParam("showEmptyValues") boolean showEmptyValues) {
+		List<ProductList> result = null;
+		if(showEmptyValues)
+			result = (List<ProductList>) productListRepository.findByName("Tech");
+		else
+			result = (List<ProductList>) productListRepository.findAll();
+		return result;
 	}
 
 	@RequestMapping(value = "/showProductsLists/{productListId}", method = RequestMethod.GET)
