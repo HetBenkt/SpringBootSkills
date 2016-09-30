@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -18,12 +21,16 @@ public class Product {
 	private final long id;
 	
 	@Column(nullable=false)
+	@NotNull
+	@Size(min=1, max=32, message="Out of range")
 	private final String name;
 	
 	@Column(nullable=true)
 	private final String url;
 	
 	@Column(nullable=false)
+	@NotNull
+	@DecimalMin(value="0")
 	private final BigDecimal price;
 
 	@ManyToMany(mappedBy="products")

@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Person {
@@ -12,13 +16,18 @@ public class Person {
 	private final long id;
 
 	@Column(nullable = false)
+	@NotNull
+	@Size(min=1, max=32, message="Out of range")
 	private final String name;
 
 	@Column(nullable = false)
+	@NotNull
+	@DecimalMin(value="1")
+	@DecimalMax(value="150")
 	private final int age;
 
 	@Column(nullable = true)
-	private String keywords;
+	private String keywords; //TODO Make it an ArrayList
 
 	public Person() {
 		id = 0;

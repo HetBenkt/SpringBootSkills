@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -17,6 +19,8 @@ public class ProductList {
 	private final long id;
 	
 	@Column(nullable=false)
+	@NotNull
+	@Size(min=1, max=32, message="Out of range")
 	private final String name;
 	
 	@ManyToMany

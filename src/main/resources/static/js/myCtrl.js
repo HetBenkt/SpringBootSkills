@@ -1,7 +1,7 @@
 app.controller("myCtrl", function($scope, $http) {
 	$http({
 		method: "GET",
-		url: "http://localhost:8080/api/showAllProducts"
+		url: "http://localhost:8080/api/products"
 	}).then(function success(products) {
 		console.log(products);
 		$scope.products = products.data;
@@ -11,7 +11,7 @@ app.controller("myCtrl", function($scope, $http) {
 	
 	$http({
 		method: "GET",
-		url: "http://localhost:8080/api/showAllProductsLists?showEmptyValues=false"
+		url: "http://localhost:8080/api/productslists?showEmptyValues=false"
 	}).then(function success(productsLists) {
 		console.log(productsLists);
 		$scope.productsLists = productsLists.data;
