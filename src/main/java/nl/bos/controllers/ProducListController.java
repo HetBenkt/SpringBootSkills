@@ -2,18 +2,14 @@ package nl.bos.controllers;
 
 import java.util.List;
 
-import javax.validation.Constraint;
-import javax.validation.Valid;
-
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.bos.controllers.advices.ExceptionHandlingControllerAdvice;
 import nl.bos.controllers.exceptions.ProductListNotFoundException;
 import nl.bos.models.Person;
 import nl.bos.models.Product;
@@ -45,14 +41,12 @@ public class ProducListController extends ApiController {
 		return productListRepository.findOne(productListId);
 	}
 	
-	@RequestMapping(value = "/productslists", method = RequestMethod.POST) //TODO Use JSON payload!
-	public void insertProductList(@RequestParam("name") String name) {
-		ProductList productList = new ProductList(name);
+	@RequestMapping(value = "/productslists", method = RequestMethod.POST)
+	public void insertProductList(@RequestBody ProductList productList) {
 		productListRepository.save(productList);
 	}
 	
 	@RequestMapping(value = "/productslists/{productListId}/addproduct", method = RequestMethod.POST) 
-	//TODO Use JSON payload!
 	public void addProductToProductList(@PathVariable("productListId") long productListId, @RequestParam("productId") long productId) {
 		ProductList productList = productListRepository.findOne(productListId);
 		Product product = productRepository.findOne(productId);

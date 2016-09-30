@@ -3,6 +3,7 @@ package nl.bos.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,13 @@ public class PersonController extends ApiController {
 	@Autowired
 	PersonRepository personRepository;
 
-	@RequestMapping(value = "/personData", method = RequestMethod.GET)
-	public List<Person> personData() {
+	@RequestMapping(value = "/persons", method = RequestMethod.GET)
+	public List<Person> showPersons() {
 		return (List<Person>) personRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/persons", method = RequestMethod.POST)
+	public void insertPerson(@RequestBody Person person) {
+		personRepository.save(person);
 	}
 }

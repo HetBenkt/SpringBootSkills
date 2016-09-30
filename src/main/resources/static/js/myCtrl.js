@@ -21,7 +21,7 @@ app.controller("myCtrl", function($scope, $http) {
 	
 	$http({
 		method: "GET",
-		url: "http://localhost:8080/api/personData"
+		url: "http://localhost:8080/api/persons"
 	}).then(function success(personData) {
 		console.log(personData);
 		$scope.personData = personData.data;

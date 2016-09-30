@@ -1,13 +1,12 @@
 package nl.bos.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.bos.models.Person;
@@ -31,9 +30,8 @@ public class ProductController extends ApiController {
 		return productRepository.findOne(productId);
 	}
 	
-	@RequestMapping(value = "/products", method = RequestMethod.POST) //TODO Use JSON payload!
-	public void insertProduct(@RequestParam("name") String name, @RequestParam("price") BigDecimal price) {
-		Product product = new Product(name, price, "", person);
+	@RequestMapping(value = "/products", method = RequestMethod.POST)
+	public void insertProduct(@RequestBody Product product) {
 		productRepository.save(product);
 	}
 }
