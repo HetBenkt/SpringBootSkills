@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.bos.models.Person;
 import nl.bos.models.Product;
 import nl.bos.repositories.ProductRepository;
+import nl.bos.services.youtube.YouTubeService;
+import nl.bos.services.youtube.api.YouTubeVideo;
 
 @RestController
 public class ProductController extends ApiController {
@@ -19,6 +21,9 @@ public class ProductController extends ApiController {
 
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	YouTubeService youTubeService;
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public List<Product> showAllProducts() {
@@ -30,6 +35,12 @@ public class ProductController extends ApiController {
 		return productRepository.findOne(productId);
 	}
 	
+	@RequestMapping(value = "/products/{productId}/youtube", method = RequestMethod.GET)
+	public List<YouTubeVideo> getYouTubeVideos(@PathVariable("productId") long productId) {
+		Product product = productRepository.findOne(productId);
+		return youTubeService.searchVideos(product.getName());
+	}
+
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public void insertProduct(@RequestBody Product product) {
 		productRepository.save(product);

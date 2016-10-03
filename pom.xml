@@ -57,7 +57,27 @@
     		<artifactId>flyway-core</artifactId>
     		<!-- <version>4.0.3</version> -->
 		</dependency>
-    	<!-- Front-end webjars -->
+		<dependency>
+    		<groupId>org.flywaydb</groupId>
+    		<artifactId>flyway-core</artifactId>
+    		<!-- <version>4.0.3</version> -->
+		</dependency>
+		<dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+    		<!-- <version>2.6.2</version> -->
+		</dependency>
+		<dependency>
+    		<groupId>com.squareup.retrofit2</groupId>
+    		<artifactId>retrofit</artifactId>
+    		<version>2.0.1</version>
+		</dependency>
+		<dependency>
+    		<groupId>com.squareup.retrofit2</groupId>
+    		<artifactId>converter-gson</artifactId>
+    		<version>2.0.1</version>
+		</dependency>
+		<!-- Front-end webjars -->
     	<dependency>
         	<groupId>org.webjars</groupId>
         	<artifactId>angularjs</artifactId>
