@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import nl.bos.services.youtube.api.SearchListResponse;
+import nl.bos.services.youtube.api.YouTubeSearchListResponse;
 import nl.bos.services.youtube.api.YouTubeVideo;
 import retrofit2.Response;
 
@@ -19,7 +19,7 @@ public class YouTubeService {
 		List<YouTubeVideo> result = Collections.emptyList();
 
 		try {
-			Response<SearchListResponse> response = youTubeApi.searchList(query).execute();
+			Response<YouTubeSearchListResponse> response = youTubeApi.searchList(query).execute();
 			result = response.body().getItems();
 		} catch (IOException ioe) {
 			System.out.println(ioe.getMessage());

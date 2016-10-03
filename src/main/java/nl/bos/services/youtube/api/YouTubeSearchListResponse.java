@@ -2,7 +2,7 @@ package nl.bos.services.youtube.api;
 
 import java.util.List;
 
-public class SearchListResponse {
+public class YouTubeSearchListResponse {
 	private List<YouTubeVideo> items;
 
 	public List<YouTubeVideo> getItems() {
