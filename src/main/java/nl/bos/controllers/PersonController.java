@@ -13,6 +13,8 @@ import nl.bos.models.Person;
 import nl.bos.repositories.PersonRepository;
 import nl.bos.services.npo.NPOService;
 import nl.bos.services.npo.api.NPOHits;
+import nl.bos.services.sw.SWService;
+import nl.bos.services.sw.api.SWResult;
 
 @RestController
 public class PersonController extends ApiController {
@@ -21,6 +23,9 @@ public class PersonController extends ApiController {
 	
 	@Autowired
 	NPOService npoService;
+	
+	@Autowired
+	SWService swService;
 	
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
 	public List<Person> showPersons() {
@@ -37,5 +42,9 @@ public class PersonController extends ApiController {
 		Person person = personRepository.findOne(personId);
 		return npoService.searchItems(person.getName());
 	}
-
+	
+	@RequestMapping(value = "/persons/{personId}/sw", method = RequestMethod.GET)
+	public List<SWResult> getSSWItems(@PathVariable("personId") long personId) {
+		return swService.searchItems(personId);
+	}
 }
