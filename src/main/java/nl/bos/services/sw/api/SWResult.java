@@ -30,4 +30,5 @@ public class SWResult {
 	public void setFilms(List<String> films) {
 		this.films = films;
 	}
+	
 }
