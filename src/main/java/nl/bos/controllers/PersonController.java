@@ -33,8 +33,8 @@ public class PersonController extends ApiController {
 	}
 	
 	@RequestMapping(value = "/persons", method = RequestMethod.POST)
-	public void insertPerson(@RequestBody Person person) {
-		personRepository.save(person);
+	public Person insertPerson(@RequestBody Person person) {
+		return personRepository.save(person);
 	}
 	
 	@RequestMapping(value = "/persons/{personId}/npo", method = RequestMethod.GET)

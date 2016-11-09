@@ -42,7 +42,7 @@ public class ProductController extends ApiController {
 	}
 
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
-	public void insertProduct(@RequestBody Product product) {
-		productRepository.save(product);
+	public Product insertProduct(@RequestBody Product product) {
+		return productRepository.save(product);
 	}
 }
